@@ -533,7 +533,7 @@ BoxCollider:
   m_GameObject: {fileID: 1270366370}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -593,7 +593,7 @@ Transform:
   m_GameObject: {fileID: 1270366370}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 40, z: 0}
-  m_LocalScale: {x: 30, y: 100, z: 1}
+  m_LocalScale: {x: 30, y: 100, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -614,7 +614,7 @@ GameObject:
   - component: {fileID: 1707620331}
   m_Layer: 0
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -650,7 +650,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1a1ec1cdd4ce60f42b431d4d41e4e6ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -740,7 +740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1730481671
 Transform:
   m_ObjectHideFlags: 0
@@ -757,6 +757,24 @@ Transform:
   m_Father: {fileID: 1707620329}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1800678619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2135874358066265556, guid: 2226f29f30df67141b7eb3e169a57a07,
+    type: 3}
+  m_PrefabInstance: {fileID: 2135874358685321712}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1800678620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800678619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72468381a8e45594fa70bd4c7f969661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2135874358685321712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -777,17 +795,12 @@ PrefabInstance:
     - target: {fileID: 2135874358066265560, guid: 2226f29f30df67141b7eb3e169a57a07,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2135874358066265560, guid: 2226f29f30df67141b7eb3e169a57a07,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2135874358066265560, guid: 2226f29f30df67141b7eb3e169a57a07,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2135874358066265560, guid: 2226f29f30df67141b7eb3e169a57a07,
         type: 3}

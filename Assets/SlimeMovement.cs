@@ -15,7 +15,7 @@ public class SlimeMovement : MonoBehaviour
 
     private Vector2 _drag_vector;
 
-    private bool _stunned;
+    private bool _stunned = false;
 
     private void Awake()
     {
@@ -40,50 +40,72 @@ public class SlimeMovement : MonoBehaviour
         }
     }
 
+    public void Stun()
+    {
+        StartCoroutine(Stunned());
+    }
+    
+    IEnumerator Stunned()
+    {
+        _stunned = true;
+        GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
+        yield return new WaitForSeconds(0.5f);
+        _stunned = false;
+        GetComponent<MeshRenderer>().material.SetColor("_Color", Color.white);
+    }
+
     private void OnMouseDown()
     {
-        Debug.Log("Clicked");
-        _pressLoc = Input.mousePosition;
+        if (!_stunned)
+        {
+            _pressLoc = Input.mousePosition;
 
-        Arrow.SetActive(true);
+            Arrow.SetActive(true);
+        }
+        Debug.Log("Clicked");
     }
 
     private void OnMouseDrag()
     {
-        _heldLoc = Input.mousePosition;
-        _drag_vector = _heldLoc - _pressLoc;
+        if (!_stunned)
+        {
+            _heldLoc = Input.mousePosition;
+            _drag_vector = _heldLoc - _pressLoc;
 
 
-        float angle = -Vector2.SignedAngle(_drag_vector, new Vector2(-1, 0));
-        float magnitude = Mathf.Sqrt(Vector2.SqrMagnitude(_drag_vector));
+            float angle = -Vector2.SignedAngle(_drag_vector, new Vector2(-1, 0));
+            float magnitude = Mathf.Sqrt(Vector2.SqrMagnitude(_drag_vector));
 
-        magnitude = Mathf.Clamp(magnitude, 25, 100);
+            magnitude = Mathf.Clamp(magnitude, 25, 100);
 
-        Arrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            Arrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
-        Vector3 arrowBodyScale = _arrowBody.localScale;
-        Vector3 arrowBodyPos = _arrowBody.localPosition;
-        Vector3 arrowHeadPos = _arrowHead.localPosition;
+            Vector3 arrowBodyScale = _arrowBody.localScale;
+            Vector3 arrowBodyPos = _arrowBody.localPosition;
+            Vector3 arrowHeadPos = _arrowHead.localPosition;
 
-        arrowBodyScale.x = 0.005f * magnitude;
-        arrowBodyPos.x = 0.75f + 0.005f * magnitude * 2;
-        arrowHeadPos.x = 1f + 0.005f * magnitude * 4;
+            arrowBodyScale.x = 0.005f * magnitude;
+            arrowBodyPos.x = 0.75f + 0.005f * magnitude * 2;
+            arrowHeadPos.x = 1f + 0.005f * magnitude * 4;
 
-        _arrowBody.localScale = arrowBodyScale;
-        _arrowBody.localPosition = arrowBodyPos;
-        _arrowHead.localPosition = arrowHeadPos;
-       
+            _arrowBody.localScale = arrowBodyScale;
+            _arrowBody.localPosition = arrowBodyPos;
+            _arrowHead.localPosition = arrowHeadPos;
+        }
     }
 
     private void OnMouseUp()
     {
-        Debug.Log("Released");
-        _releaseLoc = Input.mousePosition;
+        if (!_stunned)
+        {
+            Debug.Log("Released");
+            _releaseLoc = Input.mousePosition;
 
-        Vector3 forceVector = 0.5f * new Vector3(-_drag_vector.x, -_drag_vector.y, 0);
-        Debug.Log(forceVector);
-        GetComponent<Rigidbody>().AddForce(forceVector, ForceMode.VelocityChange);
+            Vector3 forceVector = 0.5f * new Vector3(-_drag_vector.x, -_drag_vector.y, 0);
+            Debug.Log(forceVector);
+            GetComponent<Rigidbody>().AddForce(forceVector, ForceMode.VelocityChange);
 
-        Arrow.SetActive(false);
+            Arrow.SetActive(false);
+        }
     }
 }
