@@ -15,6 +15,8 @@ public class SlimeMovement : MonoBehaviour
 
     private Vector2 _drag_vector;
 
+    private bool _stunned;
+
     private void Awake()
     {
         _arrowBody = Arrow.transform.GetChild(0);
@@ -30,7 +32,12 @@ public class SlimeMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (transform.position.y > 80)
+        {
+            Vector3 pos = transform.position;
+            pos.y = 0;
+            transform.position = pos;  
+        }
     }
 
     private void OnMouseDown()
