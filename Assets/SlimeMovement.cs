@@ -59,8 +59,8 @@ public class SlimeMovement : MonoBehaviour
         Vector3 arrowHeadPos = _arrowHead.localPosition;
 
         arrowBodyScale.x = 0.005f * magnitude;
-        arrowBodyPos.x = 1.5f / 2 + 0.005f * magnitude * 2;
-        arrowHeadPos.x = 2.5f / 2 + 0.005f * magnitude * 4;
+        arrowBodyPos.x = 0.75f + 0.005f * magnitude * 2;
+        arrowHeadPos.x = 1f + 0.005f * magnitude * 4;
 
         _arrowBody.localScale = arrowBodyScale;
         _arrowBody.localPosition = arrowBodyPos;
