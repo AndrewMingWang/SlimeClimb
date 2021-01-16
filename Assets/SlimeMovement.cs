@@ -42,6 +42,7 @@ public class SlimeMovement : MonoBehaviour
 
     public void Stun()
     {
+        Arrow.SetActive(false);
         StartCoroutine(Stunned());
     }
     
