@@ -25,11 +25,11 @@ public class SpawnRocks : MonoBehaviour
     void FixedUpdate()
     {
         _timeSinceLastSpawn++;
-        if (_timeSinceLastSpawn > 20)
+        if (_timeSinceLastSpawn > 15)
         {
             // random timing
             System.Random rnd = new System.Random();
-            int chance = rnd.Next(1, 60);
+            int chance = rnd.Next(1, 50);
             if (chance == 1)
             {
                 SpawnRandomRock();
