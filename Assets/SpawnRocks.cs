@@ -12,7 +12,7 @@ public class SpawnRocks : MonoBehaviour
 
 
     private float _timeSinceLastSpawn;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -42,8 +42,8 @@ public class SpawnRocks : MonoBehaviour
     {
         Vector3 topLeft = camera.ViewportToWorldPoint(new Vector3(0, 1, player.transform.position.z));
         Vector3 topRight = camera.ViewportToWorldPoint(new Vector3(1, 1, player.transform.position.z));
-        Vector3 position = new Vector3(Random.Range(-15, 15), topLeft.y, player.transform.position.z);
-        GameObject newRock = Instantiate(rockPrefab, position, Quaternion.identity);
+        Vector3 position = new Vector3(Random.Range(-15, 15), camera.transform.position.y + 15, player.transform.position.z);
+        GameObject newRock = Instantiate(rockPrefab, position, Random.rotation);
     }
 
 }
