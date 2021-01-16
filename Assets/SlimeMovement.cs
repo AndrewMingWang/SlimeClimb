@@ -15,6 +15,10 @@ public class SlimeMovement : MonoBehaviour
 
     private Vector2 _drag_vector;
 
+    public AudioSource HitSound;
+    public AudioSource JumpSound;
+    public AudioSource SlingShotSound;
+
     private bool _stunned = false;
 
     private void Awake()
@@ -57,6 +61,11 @@ public class SlimeMovement : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (!SlingShotSound.isPlaying)
+        {
+            SlingShotSound.Play();
+        }
+
         if (!_stunned)
         {
             _pressLoc = Input.mousePosition;
@@ -105,6 +114,8 @@ public class SlimeMovement : MonoBehaviour
             Vector3 forceVector = 0.5f * new Vector3(-_drag_vector.x, -_drag_vector.y, 0);
             Debug.Log(forceVector);
             GetComponent<Rigidbody>().AddForce(forceVector, ForceMode.VelocityChange);
+
+            JumpSound.Play();
 
             Arrow.SetActive(false);
         }
