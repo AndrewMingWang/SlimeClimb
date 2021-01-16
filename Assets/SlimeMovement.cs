@@ -49,7 +49,7 @@ public class SlimeMovement : MonoBehaviour
     {
         _stunned = true;
         GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         _stunned = false;
         GetComponent<MeshRenderer>().material.SetColor("_Color", Color.white);
     }
